@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}{{ profile.username }} - StreamHub{% endblock %}
+{% block content %}
+<div class="profile-head">
+    <div class="avatar">{{ profile.username[0]|upper }}</div>
+    <div>
+        <h1>{{ profile.username }}</h1>
+        <p>Member since {{ profile.created_at }}</p>
+    </div>
+</div>
+<h2>Uploaded Videos</h2>
+{% if videos %}
+<div class="video-grid">
+{% for video in videos %}
+<article class="card">
+    <a href="{{ url_for('main.watch', video_id=video.id) }}"><div class="thumb"><span>▶</span></div></a>
+    <div class="card-body">
+        <span class="tag">{{ video.category }}</span>
+        <h3><a href="{{ url_for('main.watch', video_id=video.id) }}">{{ video.title }}</a></h3>
+        <small>{{ video.views }} views</small>
+    </div>
+</article>
+{% endfor %}
+</div>
+{% else %}
+<p class="muted">This user has not uploaded any videos.</p>
+{% endif %}
+{% endblock %}

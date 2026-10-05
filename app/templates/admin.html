@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard - StreamHub{% endblock %}
+{% block content %}
+<div class="admin-head">
+    <div>
+        <p class="eyebrow">ADMINISTRATION</p>
+        <h1>Dashboard</h1>
+    </div>
+    <a class="button" href="{{ url_for('main.upload') }}">Upload Video</a>
+</div>
+
+<div class="stats">
+    <div><strong>{{ total_users }}</strong><span>Users</span></div>
+    <div><strong>{{ total_videos }}</strong><span>Videos</span></div>
+    <div><strong>{{ total_views }}</strong><span>Total Views</span></div>
+    <div><strong>{{ active_users }}</strong><span>Accounts</span></div>
+</div>
+
+<div class="table-card">
+<h2>Users</h2>
+<table>
+<tr><th>Username</th><th>Email</th><th>Videos</th><th>Role</th><th>Joined</th></tr>
+{% for user in users %}
+<tr>
+    <td>{{ user.username }}</td>
+    <td>{{ user.email }}</td>
+    <td>{{ user.video_count }}</td>
+    <td>{{ 'Admin' if user.is_admin else 'User' }}</td>
+    <td>{{ user.created_at }}</td>
+</tr>
+{% endfor %}
+</table>
+</div>
+
+<div class="table-card">
+<h2>Videos</h2>
+<table>
+<tr><th>Title</th><th>Category</th><th>Uploader</th><th>Views</th><th>Actions</th></tr>
+{% for video in videos %}
+<tr>
+    <td>{{ video.title }}</td>
+    <td>{{ video.category }}</td>
+    <td>{{ video.uploader }}</td>
+    <td>{{ video.views }}</td>
+    <td class="actions">
+        <a href="{{ url_for('main.watch', video_id=video.id) }}">View</a>
+        <form method="post" action="{{ url_for('main.delete_video', video_id=video.id) }}"
+              onsubmit="return confirm('Delete this video?');">
+            <button class="danger-link" type="submit">Delete</button>
+        </form>
+    </td>
+</tr>
+{% endfor %}
+</table>
+</div>
+{% endblock %}

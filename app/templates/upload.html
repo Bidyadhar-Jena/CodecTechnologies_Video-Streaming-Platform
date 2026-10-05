@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Upload - StreamHub{% endblock %}
+{% block content %}
+<div class="form-card">
+    <h1>Upload a video</h1>
+    <p>Supported formats: MP4, WebM, OGG, MOV and M4V. Maximum size: 500 MB.</p>
+    <form method="post" enctype="multipart/form-data">
+        <label>Title</label>
+        <input name="title" maxlength="150" required>
+        <label>Description</label>
+        <textarea name="description" rows="5" maxlength="2000"></textarea>
+        <label>Category</label>
+        <select name="category">
+            {% for category in categories %}
+                <option value="{{ category }}">{{ category }}</option>
+            {% endfor %}
+        </select>
+        <label>Video File</label>
+        <input type="file" name="video" accept="video/*" required>
+        <button class="button" type="submit">Upload Video</button>
+    </form>
+</div>
+{% endblock %}

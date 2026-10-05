@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Login - StreamHub{% endblock %}
+{% block content %}
+<div class="auth-card">
+    <h1>Welcome back</h1>
+    <p>Log in to continue to StreamHub.</p>
+    <form method="post">
+        <label>Username or Email</label>
+        <input type="text" name="identity" required autofocus>
+        <label>Password</label>
+        <input type="password" name="password" required>
+        <button class="button full" type="submit">Login</button>
+    </form>
+    <p class="center">Don't have an account? <a href="{{ url_for('main.register') }}">Register</a></p>
+</div>
+{% endblock %}

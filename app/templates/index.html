@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}{{ page_title|default('StreamHub') }}{% endblock %}
+{% block content %}
+<section class="hero">
+    <div>
+        <p class="eyebrow">VIDEO STREAMING PLATFORM</p>
+        <h1>{{ page_title|default('Discover and stream your videos') }}</h1>
+        <p>Upload, watch, search and share videos from one simple platform.</p>
+    </div>
+</section>
+
+<div class="category-row">
+    <a class="{% if not selected_category %}active{% endif %}" href="{{ url_for('main.index') }}">All</a>
+    {% for category in categories %}
+        <a class="{% if selected_category == category %}active{% endif %}"
+           href="{{ url_for('main.index', category=category) }}">{{ category }}</a>
+    {% endfor %}
+</div>
+
+{% if videos %}
+<div class="video-grid">
+{% for video in videos %}
+    <article class="card">
+        <a href="{{ url_for('main.watch', video_id=video.id) }}">
+            <div class="thumb"><span>▶</span></div>
+        </a>
+        <div class="card-body">
+            <span class="tag">{{ video.category|default('General') }}</span>
+            <h3><a href="{{ url_for('main.watch', video_id=video.id) }}">{{ video.title }}</a></h3>
+            <p>{{ video.description|default('')|truncate(100) }}</p>
+            <small>{{ video.uploader|default('Unknown') }} · {{ video.views }} views</small>
+        </div>
+    </article>
+{% endfor %}
+</div>
+{% else %}
+<div class="empty">
+    <h2>No videos found</h2>
+    <p>Try another search or upload the first video.</p>
+    {% if current_user %}<a class="button" href="{{ url_for('main.upload') }}">Upload Video</a>{% endif %}
+</div>
+{% endif %}
+{% endblock %}
