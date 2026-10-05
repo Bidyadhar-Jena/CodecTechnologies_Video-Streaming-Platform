@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Upload — StreamHub{% endblock %}
+{% block content %}
+<div class="form-wrap">
+  <h1>Upload a video</h1>
+  <p class="muted">Add a video to your personal streaming library.</p>
+  <form class="form" method="post" enctype="multipart/form-data">
+    <label>Title<input name="title" required maxlength="120" placeholder="My first video"></label>
+    <label>Description<textarea name="description" rows="5" maxlength="1000" placeholder="Tell viewers about this video"></textarea></label>
+    <label>Video file<input type="file" name="video" accept="video/mp4,video/webm,video/ogg,video/quicktime" required></label>
+    <button class="button" type="submit">Upload video</button>
+  </form>
+</div>
+{% endblock %}

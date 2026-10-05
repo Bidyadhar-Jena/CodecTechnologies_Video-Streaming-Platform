@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}StreamHub — Discover{% endblock %}
+{% block content %}
+<section class="hero">
+  <div>
+    <p class="eyebrow">YOUR PERSONAL VIDEO PLATFORM</p>
+    <h1>Watch. Upload. Share.</h1>
+    <p>Stream your videos directly from a clean, lightweight web platform.</p>
+  </div>
+</section>
+
+<div class="section-head">
+  <h2>{% if q %}Search results{% else %}Latest videos{% endif %}</h2>
+  <span>{{ videos|length }} video{{ '' if videos|length == 1 else 's' }}</span>
+</div>
+
+{% if videos %}
+<div class="grid">
+{% for video in videos %}
+  <a class="card" href="{{ url_for('main.watch', video_id=video.id) }}">
+    <div class="thumb">
+      <video preload="metadata" muted src="{{ url_for('main.media', filename=video.filename) }}"></video>
+      <span class="play">▶</span>
+    </div>
+    <div class="card-body">
+      <h3>{{ video.title }}</h3>
+      <p>{{ video.description[:110] }}{% if video.description|length > 110 %}…{% endif %}</p>
+      <small>{{ video.views }} views</small>
+    </div>
+  </a>
+{% endfor %}
+</div>
+{% else %}
+<div class="empty">
+  <h2>No videos found</h2>
+  <p>Upload your first video to start building the platform.</p>
+  <a class="button" href="{{ url_for('main.upload') }}">Upload a video</a>
+</div>
+{% endif %}
+{% endblock %}
