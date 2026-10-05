@@ -33,12 +33,14 @@ own-video-streaming-platform/
 │   │   ├── base.html
 │   │   ├── index.html
 │   │   ├── upload.html
+│   │   ├── login.html
+│   │   ├── register.html
+│   │   ├── admin.html
 │   │   └── watch.html
 │   └── static/
 │       ├── css/style.css
 │       ├── js/app.js
-│       └── uploads/
-├── instance/
+│       └── .gitkeep
 ├── requirements.txt
 ├── run.py
 ├── .gitignore
