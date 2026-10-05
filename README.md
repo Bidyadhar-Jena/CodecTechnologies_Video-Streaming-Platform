@@ -92,6 +92,6 @@ git push -u origin main
 
 This is a project/demo MVP, not a production YouTube clone. For production deployment, add authentication, object storage such as S3-compatible storage, a background transcoding pipeline, HLS/DASH adaptive streaming, rate limiting, CSRF protection, moderation, thumbnails, and a production WSGI server.
 
-## Originality
+## Author
 
-This project was written as a new implementation and does not copy the uploaded VidGear repository's source code, documentation, branding, tests, or project structure.
+Bidyadhar Jena
