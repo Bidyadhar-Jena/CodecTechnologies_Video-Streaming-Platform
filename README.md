@@ -85,6 +85,8 @@ StreamHub/
         │   └── style.css
         ├── js/
         │   └── app.js
-        └── uploads/
-            └── .gitkeep
+        └── .gitkeep
 ```
+## Author
+
+Bidyadhar Jena
